@@ -1,0 +1,50 @@
+{% extends 'base/homeBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+		{% block body %}
+		<!-- <main class="container-fluid main-box"> -->
+		<main class="main-box container-fluid">
+
+			<!-- Start category Area -->
+			<section class="category-area section-gap section-gap category" id="catagory">
+				<div class="container-fluid">
+                  	<a href="{% url 'shop:category' %}" class="btn btn-outline-success">
+                    	<i class="mdi mdi-arrow-collapse-left"></i>
+                    	<span>Check other products</span>
+                  	</a>
+					<div class="row d-flex justify-content-center mt-4">
+						<div class="menu-content pb-40">
+							<div class="title text-center">
+								<h1 class="mb-10">{{ product.prod_name }}</h1>
+							</div>
+						</div>
+					</div>
+
+					<div class="container-fluid">
+						<div class="row md-3 d-flex justify-content-center">
+							<div class="col-md-3 detail-prod">
+								<img src="{{ product.prod_img.url }}" class="content-image img-fluid d-block mx-auto detail-img">
+							</div>
+							<div class="col-md-8 detail-prod-1">
+								<h6 class="m-2">Category: {{ product.prod_category }}</h6>
+								<h6 class="m-2">Price: $<span>{{ product.prod_price }}</span></h6>
+									<form action="{% url 'cart:cart_add' product.id %}" method="post">
+										{% csrf_token %}
+										<div class="form-group">
+											<div class="form-control">
+												{{ cart_form }}
+											</div>
+										</div>
+										<button class="btn btn-success" type="submit">Add to cart</button>
+									</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End category Area -->
+
+
+			{% endblock %}
+		</main>

@@ -1,0 +1,68 @@
+{% extends 'base/homeBase.html' %}
+{% load static %}
+
+		{% block body %}
+		<!-- <main class="container-fluid main-box"> -->
+		<main class="main-box container-fluid">
+            <!--- Banner section---->
+            <section class="banner-area organic-breadcrumb">
+                <div class="container">
+                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
+                        <div class="col-first">
+                            <h1>New Stocked, Fresh Products</h1>
+                            <nav class="d-flex align-items-center justify-content-start">
+                                <a href="">Home<i class="mdi mdi-chevron-right" aria-hidden="true"></i></a>
+                                <a href="">Fresh Products</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!----- Banner end section -->
+			<!-- Start category Area -->
+			<div  class="row md-3 gx-3">
+				<div class="col themed-grid-col category-product">
+					<!-- Start category Area -->
+					<section class="category-area category" id="item-packs">
+						<div class="container-fluid">
+							<div  class="row md-3" >
+								{% for item in fresh %}
+								<div class="col-lg-4 content-block">
+									<div class="content">
+										<a href="{{ item.get_absolute_url }}" target="_self">
+											<div class="content-overlay"></div>
+												<img class="content-image img-fluid d-block mx-auto" src="{{ item.prod_img.url }}" alt="">
+											<div class="content-details fadeIn-bottom">
+											<h3 class="content-title">{{ item.prod_name }}</h3>
+											</div>
+										</a>
+									</div>
+									<div class="view-product">
+										<a href="{{ item.get_absolute_url }}" class="mdi mdi-arrow-expand-all"></a>
+										<form action="{% url 'cart:cart_add' item.id %}" method="post">
+											{% csrf_token %}
+											<div class="form-group">
+												<div class="form-control">
+												{{ cart_form }}
+												</div>
+											</div>
+											<button class="btn btn-success" type="submit">Add to cart</button>
+										</form>
+									</div>
+									<div class="price">
+										<h5>{{ item.prod_name }}</h5>
+										<h3>${{ item.prod_price }}</h3>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+						</div>
+					</section>
+					<!-- End category Area -->
+				</div>
+			</div>
+			<!-- End category Area -->
+
+
+			{% endblock %}
+		</main>

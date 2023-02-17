@@ -1,0 +1,175 @@
+{% extends 'base/homeBase.html' %}
+{% load static %}
+
+		{% block body %}
+		<!-- <main class="container-fluid main-box"> -->
+		<main class="main-box container-fluid">
+			<!--- Banner section---->
+			<section class="banner-area relative" id="home">
+				<div class="container-fluid">
+					<div class="row fullscreen">
+						<div class="banner-img">
+							<img class="img-fluid" src="{% static 'img\banner1.png' %}" alt="">
+						</div>
+						<div class="banner-content">
+							<h1 class="title-top"><span>Flat</span> 75%Off</h1>
+							<h1 class="text-uppercase">
+								It’s Happening <br>
+								this Season!
+							</h1>
+							<button class="primary-btn text-btn"><a href="{% url 'shop:category' %}">Purchase Now</a></button>
+						</div>							
+					</div>
+				</div>
+			</section>
+			<!-----End Banner end section -->
+
+			<!-- Start category Area -->
+			<section class="category-area section-gap section-gap category" id="catagory">
+				<div class="container-fluid">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-40">
+							<div class="title text-center">
+								<h1 class="mb-10">Shop for Different Categories</h1>
+								<p>Who are in extremely love with eco friendly system.</p>
+							</div>
+						</div>
+					</div>
+
+					<div  class="row md-3" >
+						{% for item in categories %}
+						<div  class="col-lg-4">
+							<div class="content content-block">
+								<a href="{{ item.get_absolute_url }}" target="_self">
+									<div class="content-overlay"></div>
+										<img class="content-image img-fluid d-block mx-auto" src="{{ item.category_img.url }}" alt="">
+									<div class="content-details fadeIn-bottom">
+										<h3 class="content-title">{{ item.category_name }}</h3>
+									</div>
+								</a>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+				</div>	
+			</section>
+			<!-- End category Area -->
+
+			<!-- Start Latest Area -->
+			<section class="category-area section-gap section-gap category" id="fresh">
+				<div class="container-fluid latest-section">
+					<div class="container-sm">
+						<div class="row d-flex justify-content-center">
+							<div class="menu-content pb-40">
+								<div class="title text-center">
+									<h1 class="mb-10 border-top text-white">Freshly Stocked Products</h1>
+									<p>Who are in extremely love with eco friendly system.</p>
+								</div>
+							</div>
+						</div>					
+						<div class="row md-3">
+							{% for item in fresh %}
+							<div class="col-lg-4 content-block">
+								<div class="content">
+									<a href="{{ item.get_absolute_url }}" target="_self">
+										<div class="content-overlay"></div>
+											<img class="content-image img-fluid d-block mx-auto" src="{{ item.prod_img.url }}" alt="">
+										<div class="content-details fadeIn-bottom">
+										<h3 class="content-title">{{ item.prod_name }}</h3>
+										</div>
+									</a>
+								</div>
+								<div class="view-product">
+									<a href="{{ item.get_absolute_url }}" class="mdi mdi-arrow-expand-all"></a>
+									<form action="{% url 'cart:cart_add' item.id %}" method="post">
+										{% csrf_token %}
+										<div class="form-group">
+											<div class="form-control">
+											{{ cart_form }}
+											</div>
+										</div>
+										<button class="btn btn-success" type="submit">Add to cart</button>
+									</form>
+								</div>
+								<div class="price">
+									<h5>{{ item.prod_name }}</h5>
+									<h3>${{ item.prod_price }}</h3>
+								</div>	
+							</div>
+							{% endfor %}
+						</div>
+						<div class="row view-more-btn">
+							<div class="view-more"><a href="{% url 'shop:category' %}" class="btn btn-outline-success">view more products</a></div>
+						</div>	
+					</div>
+				</div>	
+			</section>
+			<!-- End Latest Area -->
+
+			<!----- carousel section-->
+			<section class="fruit-carousel section-gap relative">
+				<div id="carouselExampleCaptions" class="carousel slide pointer-event" data-bs-ride="carousel">
+					<div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+						<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+					</div>
+					<div class="carousel-inner carousel-fruit-box container">
+						<div class="carousel-item active carousel-fruit-boxes">
+							<h3>#RushRush</h3>
+							<p>is here now at your fingertips........</p>
+							<h6>Shop, and get fantastic discount on any food item of your choice</h6>
+						</div>
+						<div class="carousel-item carousel-fruit-boxes">
+							<div class="text-flex">
+								<h1>75% off</h1>
+								<span>on your first Purchase</span>
+							</div>
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>		
+			</section>
+			<!-----End carousel section-->
+
+			<!-- Start Count Down Area -->
+			<section class="countdown-area section-gap">
+				<div class="container">
+					<div class="countdown-content">
+						<div class="title text-center">
+							<h1 class="mb-10">Exclusive Hot Deal Ends in:</h1>
+							<p>Who are in extremely love with eco friendly system.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="countdown-box">
+							<div class="countdown-num">
+								<h2 id="day">00</h2>
+								<span class="time-text">days</span>
+							</div>
+							<div class="countdown-num">
+								<h2 id="hour">00</h2>
+								<span class="time-text">hours</span>
+							</div>
+							<div class="countdown-num">
+								<h2 id="min">00</h2>
+								<span class="time-text">minutes</span>
+							</div>
+							<div class="countdown-num">
+								<h2 id="sec">00</h2>
+								<span class="time-text">seconds</span>
+							</div>					
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- End Count Down Area -->
+
+			{% endblock %}
+		</main>

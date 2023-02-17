@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShopCart</title>
+
+        <!-----shop favicon link -->
+        <link rel="shortcut icon" href="img\shopfavi.png" type="image/x-icon">
+
+        <!----- font awesome link -->
+        <link rel="stylesheet" href="fonts\css\materialdesignicons.css">
+
+        <!----- animate link -->
+        <link rel="stylesheet" href="assets\animate\animate.css">
+
+        <!---- bootstrap css-->
+        <link rel="stylesheet" href="assets\bootstrap\css\bootstrap.css">
+
+        <!---- css link -->
+        <link rel="stylesheet" href="css\main.css">
+
+        <!----jquery link-->
+        <script src="js\jquery-3.6.0.js"></script>
+    </head>
+    <body>
+        
+        <!------ Preloader section -->
+        <div id="loader"></div>
+
+		<!---- Scroll up button -->
+		<button onclick="topFunction()" class="scroll-top"><i class="mdi mdi-mouse-move-up"></i></button>
+		<!---- Scroll up button -->
+        
+		<!-- header section -->
+		<header class="fixed-top nav-color">
+			<nav class="navbar navbar-expand-lg navbar-dark shop-nav" aria-label="Eighth navbar example">
+				<div class="container nav-container">
+					<a class="navbar-brand" href="#"><img src="img\shoplogo.png" alt="" srcset=""></a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+			
+					<div class="collapse navbar-collapse" id="navbarsExample07">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="#" style="color: rgb(12, 67, 56);">Home</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(12, 67, 56);">Our Category</a>
+								<ul class="dropdown-menu mx-0 shadow">
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\fruit.png" alt="">
+											Fruits
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\veg.png" alt="">
+											Vegetables
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\fish.png" alt="">
+											Fish
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\meat.png" alt="">
+											Meat
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\diary.png" alt="">
+											Diary Products
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\bev.png" alt="">
+											Beverages
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\egg.png" alt="">
+											Eggs
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\bread.png" alt="">
+											Wheat/Grains
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\nut.png" alt="">
+											Legumes
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\potato.png" alt="">
+											Tubers
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="#">
+											<img src="img\juice.png" alt="">
+											Fruit Juices
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" style="color: rgb(12, 67, 56);" href="#">Our Latest Product</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" style="color: rgb(12, 67, 56);" href="#">Contact Us</a>
+							</li>						
+						</ul>
+						<div>
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item">
+                                    <form action="" class="nav-link search form-hold" style="color: rgb(12, 67, 56);">
+                                        <i class="mdi mdi-magnify"></i>
+                                        <input type="search" name="" id="" class="search-me" placeholder="Search Products...">
+                                    </form>
+                                </li> 								
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="#" style="color: rgb(12, 67, 56);"><i class="mdi mdi-cart"></i>Cart</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#" style="color: rgb(12, 67, 56);"><i class="mdi mdi-account-circle"></i>Account</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+        <!-- <main class="container-fluid main-box"> -->
+        <main class="main-box container-fluid">
+            <!--- Banner section---->
+            <section class="banner-area organic-breadcrumb">
+                <div class="container">
+                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
+                        <div class="col-first">
+                            <h1>New stocked items</h1>
+                            <nav class="d-flex align-items-center justify-content-start">
+                                <a href="">Home<i class="mdi mdi-chevron-right" aria-hidden="true"></i></a>
+                                <a href="">Latest Products</a>
+                            </nav>
+                        </div>
+                        <div class="col-first">
+                            <h1 class="discount animate__animated animate__backInDown animate__infinite">Get a huge discount on our latest products!</h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!----- Banner end section -->
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-9 col-lg-8 col-md-7">
+						<!-- Start Filter Bar -->
+						<div class="filter-bar d-flex flex-wrap align-items-center">
+							<div class="sorting">
+								<select>
+									<option selected value="1">Latest Products</option>
+									<option value="2">Fruits</option>
+									<option value="3">Vegetables</option>
+									<option value="4">fish</option>
+									<option value="5">meat</option>
+									<option value="6">diary products</option>
+									<option value="7">beverages</option>
+									<option value="8">eggs</option>
+									<option value="9">wheat/grains</option>
+									<option value="1">legumes</option>
+									<option value="1">tubers</option>
+									<option value="1">fruit juices</option>
+                                </select>
+							</div>
+							<div class="pagination">
+								<a href="#" class="prev-arrow"><i class="mdi mdi-chevron-double-left" aria-hidden="true"></i></a>
+								<a href="#" class="active">1</a>
+								<a href="#">2</a>
+								<a href="#">3</a>
+								<a href="#" class="dot-dot"><i class="mdi mdi-dots-horizontal-circle-outline" aria-hidden="true"></i></a>
+								<a href="#">6</a>
+								<a href="#" class="next-arrow"><i class="mdi mdi-chevron-double-right" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						<!-- End Filter Bar -->
+						<!-- Start Best Seller -->
+						<section class="lattest-product-area pb-40 category-list">
+							<div class="row">
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
+                                    <div class="content">
+                                        <img class="content-image img-fluid d-block mx-auto" src="img/blackberry.png" alt="">
+                                    </div>
+                                    <div class="view-product">
+                                        <i class="mdi mdi-arrow-expand-all"></i>
+                                        <button class="btn btn-outline-success">add to cart</button>
+                                    </div>
+                                    <div class="price price-bg">
+                                        <h5>Black Berries</h5>
+                                        <h3>$150.00</h3>
+                                    </div>
+                                </div>
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
+                                    <div class="content">
+                                        <img class="content-image img-fluid d-block mx-auto" src="img/cherry.png" alt="">
+                                    </div>
+                                    <div class="view-product">
+                                        <i class="mdi mdi-arrow-expand-all"></i>
+                                        <button class="btn btn-outline-success">add to cart</button>
+                                    </div>
+                                    <div class="price price-bg">
+                                        <h5>Cherries</h5>
+                                        <h3>$150.00</h3>
+                                    </div>
+                                </div>
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
+                                    <div class="content">
+                                        <img class="content-image img-fluid d-block mx-auto" src="img/orange.png" alt="">
+                                    </div>
+                                    <div class="view-product">
+                                        <i class="mdi mdi-arrow-expand-all"></i>
+                                        <button class="btn btn-outline-success">add to cart</button>
+                                    </div>
+                                    <div class="price price-bg">
+                                        <h5>Oranges</h5>
+                                        <h3>$150.00</h3>
+                                    </div>
+                                </div>
+								<div class="col-xl-4 col-lg-6 col-md-12 col-sm-6 single-product">
+                                    <div class="content">
+                                        <img class="content-image img-fluid d-block mx-auto" src="img/melon.png" alt="">
+                                    </div>
+                                    <div class="view-product">
+                                        <i class="mdi mdi-arrow-expand-all"></i>
+                                        <button class="btn btn-outline-success">add to cart</button>
+                                    </div>
+                                    <div class="price price-bg">
+                                        <h5>Water melons</h5>
+                                        <h3>$150.00</h3>
+                                    </div>
+                                </div>
+							</div>
+						</section>
+						<!-- End Best Seller -->
+                        
+                        <!-- Start Filter Bar -->
+						<div class="filter-bar d-flex flex-wrap align-items-center bottom-filter">
+							<div class="pagination">
+								<a href="#" class="prev-arrow"><i class="mdi mdi-chevron-double-left" aria-hidden="true"></i></a>
+								<a href="#" class="active">1</a>
+								<a href="#">2</a>
+								<a href="#">3</a>
+								<a href="#" class="dot-dot"><i class="mdi mdi-dots-horizontal-circle-outline" aria-hidden="true"></i></a>
+								<a href="#">6</a>
+								<a href="#" class="next-arrow"><i class="mdi mdi-chevron-double-right" aria-hidden="true"></i></a>
+							</div>
+						</div>
+						<!-- End Filter Bar -->
+					</div>
+					<div class="col-xl-3 col-lg-4 col-md-5">
+						<div class="sidebar-categories">
+							<div class="head">Browse Categories</div>
+							<ul class="main-categories">
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fruits">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>Fruits
+                                        <span class="number">(53)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="vegetables">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>vegetables
+                                        <span class="number">(53)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>fish
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>meat
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>diary products
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>beverages
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>eggs
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>wheat/grains
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>legumes
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>tubers
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+								<li class="main-nav-list">
+                                    <a data-toggle="collapse" href="#" aria-expanded="false" aria-controls="fish">
+                                        <span class="mdi mdi-arrow-right-bold-outline"></span>fruit juices
+                                        <span class="number">(24)</span>
+                                    </a>
+								</li>
+                            </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+        </main>
+        <!-- </main> -->
+        <footer>
+            <div class="footer-content">
+                <div class="left-box footer-flex">
+                    <h5>about us</h5>
+                    <div class="left-box-content content">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi doloremque saepe ratione, aperiam, deleniti, officia consectetur corrupti tempora laborum ab expedita laboriosam eaque quibusdam dolor molestiae adipisci neque accusamus necessitatibus?</p>
+                        <div class="social">
+                            <a href="#"><span class="mdi mdi-facebook"></span></a>
+                            <a href="#"><span class="mdi mdi-twitter"></span></a>
+                            <a href="#"><span class="mdi mdi-instagram"></span></a>
+                            <a href="#"><span class="mdi mdi-whatsapp"></span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="center-box footer-flex">
+                    <h5>Address</h5>
+                    <div class="center-box-content content">
+                        <div class="place box">
+                            <span class="mdi mdi-map-marker"></span>
+                            <span class="text">14, Ikorodu, Lagos</span>
+                        </div>
+                        <div class="phone box">
+                            <span class="mdi mdi-phone"></span>
+                            <span class="text">+2349-980-345-2312</span>
+                        </div>
+                        <div class="phone box">
+                            <span class="mdi mdi-email"></span>
+                            <span class="text">douleagent@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-box footer-flex">
+                    <h5>Newsletter</h5>
+                    <div class="right-box-content content">
+                        <form action="">
+                            <input type="email" name="" id="" class="form-hold">
+                            <button type="submit" class="btn btn-primary subscribe">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!----- js files-->
+        <script src="js\main.js"></script>	
+        <script src="assets\bootstrap\js\bootstrap.js"></script>
+    </body>
+</html>

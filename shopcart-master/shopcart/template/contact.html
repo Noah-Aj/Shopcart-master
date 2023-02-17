@@ -1,0 +1,78 @@
+{% extends 'base/homeBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+		{% block body %}
+        <!-- <main class="container-fluid main-box"> -->
+        <main class="main-box container-fluid">
+            <!--- Banner section---->
+            <section class="banner-area organic-breadcrumb">
+                <div class="container">
+                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
+                        <div class="col-first">
+                            <h1>Contact us</h1>
+                            <nav class="d-flex align-items-center justify-content-start">
+                                <a href="">Home<i class="mdi mdi-chevron-right" aria-hidden="true"></i></a>
+                                <a href="">customer service</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!----- Banner end section -->
+            <section class="container-sm contact-me">
+                <div class="row">
+                    <div class="relative">
+                        <div class="contact-box">
+                            <div class="contact-details">
+                                <h6>Address</h6>
+                                <i class="mdi mdi-map-marker"></i>
+                                <span>23B, olorunshoki avenue, lekki, lagos, nigeria</span>
+                            </div>
+                            <div class="contact-details phone">
+                                <div class="phone-box">
+                                    <h6>call numbers</h6>
+                                    <i class="mdi mdi-phone"></i>
+                                    <span>+2349-098-9876-9078</span>
+                                </div>
+                                <div class="phone-box">
+                                    <i class="mdi mdi-phone"></i>
+                                    <span>+2349-098-9876-9078</span>
+                                </div>                                
+                            </div>
+                            <div class="contact-details">
+                                <h6>mail address</h6>
+                                <i class="mdi mdi-email"></i>
+                                <span>doublagent@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <h4 class="text-center">send us a message</h4>
+                        <div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="contact-form">
+                            <form action="" method="POST">
+                                {% csrf_token %}
+                                <div class="form-name">
+                                    {% render_field form.first_name placeholder='First Name' class+='form-hold' %}
+                                    {% render_field form.last_name placeholder='Last Name' class+='form-hold' %}
+                                </div>
+
+                                {% render_field form.email_user placeholder='Email Address' class+='form-hold' %}
+                                {% render_field form.text_desc placeholder='Enter your text ...' class+='form-hold' %}
+                                <button type="submit" class="btn btn-outline-success">send message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            {% block related %}{% endblock %}
+        </main>
+        <!-- </main> -->
+{% endblock %}

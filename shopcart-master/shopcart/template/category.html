@@ -1,0 +1,106 @@
+{% extends 'base/homeBase.html' %}
+{% load static %}
+
+		{% block body %}
+		<!-- <main class="container-fluid main-box"> -->
+		<main class="main-box container-fluid">
+            <!--- Banner section---->
+            <section class="banner-area organic-breadcrumb">
+                <div class="container">
+                    <div class="breadcrumb-banner d-flex flex-wrap align-items-center">
+                        <div class="col-first">
+                            <h1>Shop Categories</h1>
+                            <nav class="d-flex align-items-center justify-content-start">
+                                <a href="">Home<i class="mdi mdi-chevron-right" aria-hidden="true"></i></a>
+                                <a href="">{% if not category%} All Categories {% else %} {{ category }} {% endif %}</a>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!----- Banner end section -->
+			<!-- Start category Area -->
+			<section class="category-area section-gap section-gap category" id="catagory">
+				<div class="container-fluid">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-40">
+							<div class="title text-center">
+								<h1 class="mb-10">Shop Categories</h1>
+								<p>Who are in extremely love with eco friendly system.</p>
+							</div>
+						</div>
+					</div>
+
+					<div  class="row md-3 gx-3">
+						<div class="col-md-3 themed-grid-col category-product">
+							<div class="accordion" id="accordionExample">
+								<div class="accordion-item">
+									<h4 class="accordion-header" id="headingOne">
+									  	<button class="accordion-button accord-btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+											Categories
+									  	</button>
+									</h4>
+									<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+									  	<div class="accordion-body">
+											<div class="selected-text">
+												<div {% if not category %} class="selected" {% endif %}>
+													<a href="{% url 'shop:category' %}">All</a>
+												</div>
+												{% for item in categories %}
+												<div  {% if category.category_slug == item.category_slug %} class="selected" {% endif %}>
+													<a href="{{ item.get_absolute_url }}">{{ item.category_name }}</a>
+												</div>
+												{% endfor %}
+											</div>
+									  	</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-9 themed-grid-col category-product">
+							<h6>{% if category %}{{ category.category_name }}{% else %}Products {% endif %}</h6>
+							<!-- Start category Area -->
+							<section class="category-area section-gap section-gap category" id="item-packs">
+								<div class="container-fluid">
+									<div  class="row md-3" >
+										{% for item in products %}
+										<div  class="col-lg-4">
+											<div class="content content-block">
+												<a href="{{ item.get_absolute_url }}" target="_self">
+													<div class="content-overlay"></div>
+														<img class="content-image img-fluid d-block mx-auto" src="{{ item.prod_img.url }}" alt="">
+													<div class="content-details fadeIn-bottom">
+														<h3 class="content-title">{{ item.prod_name }}</h3>
+													</div>
+												</a>
+											</div>
+											<div class="view-product">
+												<a href="{{ item.get_absolute_url }}" class="mdi mdi-arrow-expand-all"></a>
+												<form action="{% url 'cart:cart_add' item.id %}" method="post">
+													{% csrf_token %}
+													<div class="form-group">
+														<div class="form-control">
+														{{ cart_form }}
+														</div>
+													</div>
+													<button class="btn btn-success" type="submit">Add to cart</button>
+												</form>
+											</div>
+											<div class="price">
+												<h5>{{ item.prod_name }}</h5>
+												<h3>${{ item.prod_price }}</h3>
+											</div>
+										</div>
+										{% endfor %}
+									</div>
+								</div>
+							</section>
+							<!-- End category Area -->
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End category Area -->
+
+			{% endblock %}
+		</main>

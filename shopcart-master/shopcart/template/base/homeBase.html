@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+{% load static %}
+{% load widget_tweaks %}
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>ShopCart</title>
+
+		<!-----shop favicon link -->
+		<link rel="shortcut icon" href="{% static 'img\shopfavi.png' %}" type="image/x-icon">
+
+		<!----- font awesome link -->
+		<link rel="stylesheet" href="{% static 'fonts\css\materialdesignicons.css' %}">
+
+		<!----- animate link -->
+		<link rel="stylesheet" href="{% static 'assets\animate\animate.css' %}">
+
+		<!---- bootstrap css-->
+		<link rel="stylesheet" href="{% static 'assets\bootstrap\css\bootstrap.css' %}">
+		<link rel="stylesheet" href="{% static 'css/jquery-ui.css' %}">
+		<!---- css link -->
+		<link rel="stylesheet" href="{% static 'css\main.css' %}">
+		<!----jquery link-->
+		<script src="{% static 'js\jquery-3.6.0.js' %}"></script>
+		<!----- jquery ui ------------>
+		<script src="{% static 'js/jquery-ui.js' %}"></script>
+
+	</head>
+	<body>
+
+		<!------ Preloader section -->
+		<div id="loader"></div>
+		<!------ Preloader section -->
+
+		<!---- Scroll up button -->
+		<button onclick="topFunction()" class="scroll-top"><i class="mdi mdi-mouse-move-up"></i></button>
+		<!---- Scroll up button -->
+
+		<!-- header section -->
+		<header class="fixed-top nav-color">
+			<nav class="navbar navbar-expand-lg navbar-dark shop-nav" aria-label="Eighth navbar example">
+				<div class="container nav-container">
+					<a class="navbar-brand" href="#"><img src="{% static 'img\shoplogo.png' %}" alt="" srcset=""></a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarsExample07">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link active" aria-current="page" href="{% url 'shop:product_list' %}" style="color: rgb(12, 67, 56);">Home</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="{% url 'shop:category' %}" id="dropdown07" data-bs-toggle="dropdown" aria-expanded="false" style="color: rgb(12, 67, 56);">Our Category</a>
+								<ul class="dropdown-menu mx-0 shadow">
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="{% url 'shop:category' %}">
+											<i class="shop-icons mdi mdi-plus"></i>
+											All Categories
+										</a>
+									</li>
+									{% for item in categories %}
+									<li>
+										<a class="dropdown-item d-flex gap-2 align-items-center" href="{{ item.get_absolute_url }}">
+											<img src="{{ item.category_img.url }}" alt="" class="shop-icons">
+											{{ item.category_name }}
+										</a>
+									</li>
+									{% endfor %}
+								</ul>
+							</li>
+<!---->
+							<li class="nav-item">
+								<a class="nav-link" style="color: rgb(12, 67, 56);" href="{% url 'shop:contact' %}">Contact Us</a>
+							</li>
+						</ul>
+						<div>
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                <li class="nav-item search-list" data-url="{% url 'shop:search_list' %}">
+                                    <form action="{% url 'shop:searched_products' %}" method="POST" class="nav-link search form-hold" style="color: rgb(12, 67, 56);">
+										{% csrf_token %}
+                                        <button type="submit"><i class="mdi mdi-magnify"></i></button>
+                                        <input type="search" name="search-me" id="search-me" class="search-me" placeholder="Search Products..." required>
+                                    </form>
+                                </li>
+								<li class="nav-item">
+									{% with sum_items=cart|length %}
+									<a class="nav-link" aria-current="page" href="{% url 'cart:cart_detail' %}" style="color: rgb(12, 67, 56);">
+										<span class="cart-number">{% if sum_items > 0 %} {{ sum_items }} {% elif not order %} 0 {% endif %}</span>
+										{% endwith %}
+										<i class="mdi mdi-cart"></i>Cart
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+			{% block body %}
+
+			{% endblock %}
+			<!-- Start related-product Area -->
+			{% block related %}
+			<section class="related-product-area section-gap" id="latest">
+				<div class="container">
+					<div class="related-content">
+						<div class="title text-center">
+							<h1 class="mb-10">Related Searched Products</h1>
+							<p>Who are in extremely love with eco friendly system.</p>
+						</div>
+					</div>
+					<div class="row">
+						{% for item in related %}
+						<div class="col-lg-3 col-md-4 col-sm-6 mb-20 product-item-search">
+							<div class="single-related-product d-flex">
+								<a href="{{ item.get_absolute_url }}"><img src="{{ item.prod_img.url }}" class="image-thumb" alt=""></a>
+								<div class="desc">
+									<a href="{{ item.get_absolute_url }}" class="title">{{ item.prod_name }}</a>
+									<div class="price"><span class="lnr lnr-tag"></span> ${{ item.prod_price }}</div>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+					</div>
+                </div>
+			</section>
+			{% endblock %}
+			<!-- End related-product Area -->
+
+		<!-- </main> -->
+		<footer class="relative">
+			<div class="footer-content">
+				<div class="left-box footer-flex">
+					<h5>about us</h5>
+					<div class="left-box-content content">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi doloremque saepe ratione, aperiam, deleniti, officia consectetur corrupti tempora laborum ab expedita laboriosam eaque quibusdam dolor molestiae adipisci neque accusamus necessitatibus?</p>
+						<div class="social">
+							<a href="#"><span class="mdi mdi-facebook"></span></a>
+							<a href="#"><span class="mdi mdi-twitter"></span></a>
+							<a href="#"><span class="mdi mdi-instagram"></span></a>
+							<a href="#"><span class="mdi mdi-whatsapp"></span></a>
+						</div>
+					</div>
+				</div>
+				<div class="center-box footer-flex">
+					<h5>Address</h5>
+					<div class="center-box-content content">
+						<div class="place box">
+							<span class="mdi mdi-map-marker"></span>
+							<span class="text">14, Ikorodu, Lagos</span>
+						</div>
+						<div class="phone box">
+							<span class="mdi mdi-phone"></span>
+							<span class="text">+2349-980-345-2312</span>
+						</div>
+						<div class="phone box">
+							<span class="mdi mdi-email"></span>
+							<span class="text">douleagent@gmail.com</span>
+						</div>
+					</div>
+				</div>
+				<div class="right-box footer-flex">
+					<h5>Newsletter</h5>
+					<div>
+						{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-{{ message.tags }}">{{ message }}</div>
+							{% endfor %}
+						{% endif %}
+					</div>
+					<div class="right-box-content content">
+						<form action="{% url 'shop:subscribe' %}" method="POST">
+							{% csrf_token %}
+							{% render_field subscribe_form.email_user placeholder='Subscribe here' class+='form-hold'%}
+							<button type="submit" class="btn btn-primary subscribe">Subscribe</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<!----- js files-->
+		<script src="{% static 'js\main.js' %}"></script>
+		<script src="{% static 'assets\bootstrap\js\bootstrap.js' %}"></script>
+	</body>
+</html>

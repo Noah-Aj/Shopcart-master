@@ -1,0 +1,98 @@
+{% extends 'base/homeBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+		{% block body %}
+
+        <main class="main-box container-fluid">
+            <div class="py-5 text-center">
+                <h2>Checkout form</h2>
+            </div>
+
+            <div class="row g-5 p-4">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                     <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-primary">Your cart</span>
+                        <span class="badge bg-primary rounded-pill cart-num">{{ cart|length }}</span>
+                    </h4>
+
+                    {% if cart %}
+
+                    <ul class="list-group mb-3">
+
+                        {% for item in cart %}
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">{{ item.product.prod_name}}</h6>
+                                <small class="text-muted">Quantity: {{ item.quantity }}</small>
+                                <div class="text-muted">Cost Price: ${{ item.product.prod_price }}</div>
+                            </div>
+                            <span class="text-muted">${{ item.total_price }}</span>
+                        </li>
+                        {% endfor %}
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (USD)</span>
+                            <strong>${{ cart.get_total_price }}</strong>
+                        </li>
+                    </ul>
+
+                    {% else %}
+
+                    <ul class="list-group mb-3">
+                        <li class="list-group-item d-flex justify-content-between lh-sm">
+                            <div>
+                                <h6 class="my-0">You have no order.</h6>
+                            </div>
+                        </li>
+                    </ul>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="mb-3">Billing address</h4>
+                    <form class="needs-validation" novalidate method="POST">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                {% render_field form.first_name|add_required_class:"is-required" placeholder="Enter your first name" class+="m-2 form-hold" %}
+                            </div>
+                            <div class="col-sm-6">
+                                {% render_field form.last_name placeholder="Enter your last name" class+="m-2 form-hold" %}
+                            </div>
+                            <div class="col-12">
+                                {% render_field form.email_user placeholder="Email address" class+="m-2 form-hold" %}
+                            </div>
+                            <div class="col-12">
+                                {% render_field form.address placeholder="Home address" class+="m-2 form-hold" %}
+                            </div>
+                            <div class="col-12">
+                                {% render_field form.postal_code placeholder="Postal address" class+="m-2 form-hold" %}
+                            </div>
+                            <div class="col-12">
+                                {% render_field form.city placeholder="City" class+="m-2 form-hold" %}
+                            </div>
+                            <div class="col-12">
+                                {% render_field form.phone_num placeholder="Phone Number" class+="m-2 form-hold" %}
+                            </div>
+                        </div>
+                        <button class="btn btn-primary btn-sm checkout" type="submit">Continue to checkout</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+
+        <script src="form-validation.js"></script>
+        <script>
+            var cartNum = document.querySelector(".cart-num");
+
+            var checkBtn = document.querySelector(".checkout");
+
+            if(cartNum.innerHTML == 0){
+                checkBtn.style.display = "none";
+            }
+        </script>
+{% endblock %}

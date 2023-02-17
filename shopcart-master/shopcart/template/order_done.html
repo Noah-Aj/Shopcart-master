@@ -1,0 +1,17 @@
+{% extends 'base/homeBase.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+		{% block body %}
+
+        <main class="main-box container-fluid">
+            <div class="py-5 text-center">
+                <h2>Checkout form</h2>
+            </div>
+            <div class="row">
+                <h1>Thank you</h1>
+                <p>Your order has been successfully completed. Your order number is<strong>{{ order.order_id }}</strong>.</p>
+            </div>
+        </main>
+
+{% endblock %}
